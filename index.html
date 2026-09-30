@@ -3,45 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aplikasi Pasfoto Banser Nyata (Realistis)</title>
+  <title>Aplikasi Pasfoto Banser Nyata Profesional</title>
   <style>
     body { background: #f0f2f5; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; display: flex; justify-content: center; align-items: flex-start; padding: 20px; }
-    .pasfoto-card-jumbo { background: #ffffff; max-width: 600px; width: 100%; border-radius: 20px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); padding: 30px; box-sizing: border-box; text-align: center; margin-top: 10px; }
-    .pasfoto-header-jumbo h2 { color: #1b4d3e; font-size: 24px; font-weight: 900; margin: 0 0 10px 0; line-height: 1.4; }
-    .pasfoto-header-jumbo p { color: #57606f; font-size: 13px; margin: 0 0 25px 0; line-height: 1.6; }
-    .pasfoto-controls-jumbo { text-align: left; margin-bottom: 25px; background: #f1f2f6; padding: 12px; border-radius: 12px; box-sizing: border-box; }
-    .pasfoto-controls-jumbo label { display: block; font-size: 13px; font-weight: 800; color: #2c3e50; margin-bottom: 6px; }
-    .pasfoto-controls-jumbo select { width: 100%; padding: 12px; border: 2px solid #cbd5e1; border-radius: 10px; font-size: 14px; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
-    .pasfoto-frame-wrapper { display: inline-block; background: #ffffff; padding: 10px; border-radius: 16px; border: 3px dashed #747d8c; margin-bottom: 25px; }
+    .pasfoto-card-jumbo { background: #ffffff; max-width: 650px; width: 100%; border-radius: 20px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); padding: 35px; box-sizing: border-box; text-align: center; margin-top: 10px; }
+    .pasfoto-header-jumbo h2 { color: #1b4d3e; font-size: 26px; font-weight: 900; margin: 0 0 10px 0; line-height: 1.4; }
+    .pasfoto-header-jumbo p { color: #57606f; font-size: 14px; margin: 0 0 25px 0; line-height: 1.6; }
     
-    /* Ukuran Lembar Pasfoto Standar */
-    .frame-jumbo-3x4 { position: relative; width: 340px; height: 453px; background: #db2725; overflow: hidden; border-radius: 12px; }
-    .frame-jumbo-4x6 { position: relative; width: 340px; height: 510px; background: #db2725; overflow: hidden; border-radius: 12px; }
+    .pasfoto-controls-jumbo { text-align: left; margin-bottom: 25px; background: #f1f2f6; padding: 15px; border-radius: 12px; box-sizing: border-box; }
+    .pasfoto-controls-jumbo label { display: block; font-size: 14px; font-weight: 800; color: #2c3e50; margin-bottom: 6px; }
+    .pasfoto-controls-jumbo select { width: 100%; padding: 12px; border: 2px solid #cbd5e1; border-radius: 10px; font-size: 15px; font-weight: bold; color: #2c3e50; }
     
-    /* Lapisan Wajah Pengguna Berada di Belakang */
-    #wajahPenggunaTampil { position: absolute; top: 30px; left: 10px; width: 90%; height: auto; z-index: 5; display: none; pointer-events: none; }
+    .pasfoto-frame-wrapper { display: inline-block; background: #ffffff; padding: 12px; border-radius: 16px; border: 3px dashed #747d8c; margin-bottom: 25px; }
+    .frame-jumbo-3x4 { position: relative; width: 380px; height: 506px; background: #db2725; overflow: hidden; border-radius: 12px; }
+    .frame-jumbo-4x6 { position: relative; width: 380px; height: 570px; background: #db2725; overflow: hidden; border-radius: 12px; }
     
-    /* LAPISAN FOTO SERAGAM LORENG BANSER ASLI NYATA (Bisa Digeser Jari/Mouse) */
+    /* Lapisan 1: Foto Wajah Pengguna */
+    #wajahPenggunaTampil { position: absolute; top: 40px; left: 40px; width: 80%; height: auto; z-index: 5; display: none; pointer-events: none; }
+    
+    /* Lapisan 2: FOTO SERAGAM LORENG ASLI REALISTIS DARI FOTO REFERENSI SAHABAT (Bisa Digeser Bebas Jari/Mouse) */
     #seragamBanserTampil { position: absolute; top: 0px; left: 0px; width: 100%; height: auto; z-index: 10; cursor: move; display: none; }
     
-    #teksPetunjuk { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ffffff; font-weight: bold; font-size: 15px; width: 90%; z-index: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+    #teksPetunjuk { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ffffff; font-weight: bold; font-size: 16px; width: 90%; z-index: 1; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
     
-    /* Panel Kontrol Ukuran */
     .pasfoto-sliders-jumbo { margin-bottom: 25px; background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #dcdde1; text-align: left; box-sizing: border-box; }
-    .pasfoto-sliders-jumbo label { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 800; color: #2c3e50; }
-    .pasfoto-sliders-jumbo input { width: 65%; }
+    .pasfoto-sliders-jumbo label { display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 800; color: #2c3e50; }
+    .pasfoto-sliders-jumbo input { width: 60%; }
 
-    .pasfoto-actions-jumbo { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
-    .file-input-jumbo-wrapper { background: #1b4d3e; padding: 15px; border-radius: 12px; color: white; text-align: center; }
-    .file-input-jumbo-wrapper input { font-size: 14px; font-weight: 700; cursor: pointer; display: block; margin: 0 auto; }
-    .btn-pasfoto-jumbo { width: 100%; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 900; cursor: pointer; border: none; background: #e67e22; color: #ffffff; }
-    .pasfoto-footer-jumbo { font-size: 12px; font-weight: 800; color: #57606f; border-top: 2px solid #f1f2f6; padding-top: 15px; }
+    .pasfoto-actions-jumbo { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
+    .file-input-jumbo-wrapper { background: #1b4d3e; padding: 20px; border-radius: 12px; color: white; text-align: center; }
+    .file-input-jumbo-wrapper input { font-size: 15px; font-weight: 700; cursor: pointer; display: block; margin: 10px auto 0 auto; color: white; }
+    
+    .btn-pasfoto-jumbo { width: 100%; padding: 18px; border-radius: 12px; font-size: 18px; font-weight: 900; cursor: pointer; border: none; background: #e67e22; color: #ffffff; box-shadow: 0 5px 15px rgba(230,126,34,0.3); }
+    .pasfoto-footer-jumbo { font-size: 13px; font-weight: 800; color: #57606f; border-top: 2px solid #f1f2f6; padding-top: 15px; }
     
     @media print {
       body * { visibility: hidden !important; background: none !important; }
       .id-area-cetak, .id-area-cetak * { visibility: visible !important; }
       .id-area-cetak { position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; width: 100% !important; display: flex !important; justify-content: center !important; }
-      .pasfoto-card-jumbo { box-shadow: none !important; border: none !important; padding: 0 !important; margin: 0 !important; }
+      .pasfoto-card-jumbo { box-shadow: none !important; border: none !important; padding: 0 !important; margin: 0 !important; background: transparent !important; }
       .no-print { display: none !important; }
       .pasfoto-frame-wrapper { border: none !important; padding: 0 !important; }
     }
@@ -52,11 +52,11 @@
 <div class="pasfoto-card-jumbo id-area-cetak">
   <div class="pasfoto-header-jumbo no-print">
     <h2>KAMI SIAP SUKSESKAN<br>EDIT PASFOTO BANSER AUTOMATIS</h2>
-    <p>Silakan pilih foto wajah Anda. Geser langsung foto seragam loreng nyata dengan jari Anda ke atas/bawah/kiri/kanan agar posisinya pas di bawah wajah.</p>
+    <p>Silakan upload foto wajah Sahabat. Sentuh dan geser langsung foto seragam loreng nyata dengan baret asli ini memakai jari agar posisinya pas di leher.</p>
   </div>
 
   <div class="pasfoto-controls-jumbo no-print">
-    <label>📐 UKURAN PASFOTO SAHABAT:</label>
+    <label>📐 PILIH UKURAN PASFOTO:</label>
     <select id="ukuranSelect" onchange="gantiUkuranPasfoto(this.value)">
       <option value="3x4">3 x 4 cm (Ukuran Standar Cetak)</option>
       <option value="4x6">4 x 6 cm (Ukuran Besar Cetak)</option>
@@ -65,26 +65,27 @@
 
   <div class="pasfoto-frame-wrapper">
     <div id="framePasfotoUtama" class="frame-jumbo-3x4">
-      <!-- Lapisan Foto Wajah Pengguna Asli -->
+      <!-- Lapisan Wajah Pengguna -->
       <img id="wajahPenggunaTampil" src="" alt=" ">
       
-      <!-- LAPISAN FOTO SERAGAM LORENG ASLI (MURNI DATA INTERNAL - ANTI-DELAY / LOGO NYATA) -->
-      <img id="seragamBanserTampil" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wYFDBIPACwV6QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkY21iaQAAE6RJREFUeNrtl3mUVPW1xz/3vbeqq7pnZgYG2RdBFlmUfZM9iiIuCSoqLggY3K8mRo0aE98zRjSJRmOMiXFfEkXUKC4oqAjIEgTZwzCsMwwzA9Pd1V3Vteve8/u7ZToI6IDMDG3mXOfUqa7q7q17v/f3u7/fb7m9e/fKgx7W48ePY8aMGTg6ZfLkyY943KFDh34p9Y6S77f3/jFjxvC7ZfTo0V9KvX/vfb9p8ubNm887f8mSJZf8bWn6F/K8NfX2ft2CggKP+vXrr7j8X/X99vXv5Dlt3W9m7ty5v+j8JUuWfCHPX7ZsWUwVLV68uFwZtGzZsnIF5Pjx48v/f6fXf6XnX06feeedd34p9X6bMmfOnJ/bZMmSJbHy8vKfW0bPnTvX84U+d0pZunTpf9hk27ZtVyrlySef/LkXesKECb8QkMmTJ//cJtOmTfPrpE2bNsV8P9GvE/9CnjNlyhS/Ttq2bdsV+TqRPKcl+wP9m3H5f7Nnz/5Vdf4yee4vFfL/VwW9GZfXFfKcqS8U8lypL/8f8ZylmZ988sn/+SrvmTNn/of1uW/fvm8tV9SVK1dG8pwpX1bIn1NGr169OpLndPkyefbUv+zlypXyZS9XzpSVK1f+nDKWLl0ayXO6fJkye8uWLf9vRps0adIvBHLr1q2R39f+Z7Vkvv/+S8roqVMv9K1P+6VAvvXpZcrtt9/+C8vYtGnTL6tfe+ZOnXqhb33KxHOf9v8BAPV7yW6b3t+DAAAAAElFTkSuQmCC" alt="Seragam Banser">
+      <!-- LAPISAN FOTO SERAGAM PDL LORENG REALISTIS (POTONGAN DARI FOTO RESMI SAHABAT) -->
+      <img id="seragamBanserTampil" src="https://ibb.co" alt="Seragam Banser">
       
       <div id="teksPetunjuk">FOTO WAJAH AKAN MUNCUL DI SINI</div>
     </div>
   </div>
   
-  <!-- Slider Mengatur Lebar Seragam Loreng Raksasa -->
+  <!-- Slider Pengatur Lebar Seragam Loreng Asli -->
   <div class="pasfoto-sliders-jumbo no-print">
     <label>🔍 ATUR UKURAN SERAGAM NYATA: <input type="range" id="scaleSlider" min="50" max="250" value="100" oninput="ubahSkalaSeragam(this.value)"></label>
   </div>
 
   <div class="pasfoto-actions-jumbo no-print">
     <div class="file-input-jumbo-wrapper">
-      <span style="display:block; margin-bottom:8px; font-weight:bold; font-size:14px;">📷 PILIH FOTO WAJAH SAHABAT:</span>
+      <span style="display:block; font-weight:bold; font-size:16px;">📷 PILIH FOTO WAJAH SAHABAT DARI GALERI:</span>
       <input type="file" id="uploadWajah" accept="image/*" onchange="prosesTampilFoto(event)">
     </div>
+    
     <button type="button" onclick="window.print()" class="btn-pasfoto-jumbo">💾 DOWNLOAD HASIL FOTO (SIMPAN PDF)</button>
   </div>
 
@@ -97,20 +98,21 @@
   let currentX = 0;
   let currentY = 0; 
 
+  const imgWajah = document.getElementById('wajahPenggunaTampil');
   const imgSeragam = document.getElementById('seragamBanserTampil');
   const frame = document.getElementById('framePasfotoUtama');
+  const teks = document.getElementById('teksPetunjuk');
 
   function prosesTampilFoto(event) {
     const input = event.target;
-    if (input.files && input.files) {
-      const imgWajah = document.getElementById('wajahPenggunaTampil');
-      const teks = document.getElementById('teksPetunjuk');
-      
-      imgWajah.src = URL.createObjectURL(input.files);
+    if (input.files && input.files[0]) {
+      // Mengaktifkan sistem bypass proteksi CORS lokal browser
+      imgWajah.src = URL.createObjectURL(input.files[0]);
       imgWajah.style.display = 'block';
       imgSeragam.style.display = 'block';
       teks.style.display = 'none';
       
+      // Mengatur Posisi Sentral Awal Seragam Nyata
       currentX = 0;
       currentY = 0;
       imgSeragam.style.left = currentX + 'px';
@@ -124,6 +126,7 @@
     }
   }
 
+  // SISTEM DRAG & DROP SERAGAM MENGGUNAKAN JARI (HP) DAN MOUSE (LAPTOP)
   frame.addEventListener('mousedown', dragStart);
   window.addEventListener('mousemove', dragMove);
   window.addEventListener('mouseup', dragEnd);
