@@ -68,8 +68,8 @@
       <!-- Lapisan Foto Wajah Pengguna Asli -->
       <img id="wajahPenggunaTampil" src="" alt=" ">
       
-      <!-- LAPISAN FOTO SERAGAM LORENG ASLI REALISTIS DARI GAMBAR YANG DIKIRIM -->
-      <img id="seragamBanserTampil" src="https://postimg.co" alt="Seragam Banser">
+      <!-- LAPISAN FOTO SERAGAM LORENG ASLI (MURNI DATA INTERNAL - ANTI-DELAY / LOGO NYATA) -->
+      <img id="seragamBanserTampil" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wYFDBIPACwV6QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkY21iaQAAE6RJREFUeNrtl3mUVPW1xz/3vbeqq7pnZgYG2RdBFlmUfZM9iiIuCSoqLggY3K8mRo0aE98zRjSJRmOMiXFfEkXUKC4oqAjIEgTZwzCsMwwzA9Pd1V3Vteve8/u7ZToI6IDMDG3mXOfUqa7q7q17v/f3u7/fb7m9e/fKgx7W48ePY8aMGTg6ZfLkyY943KFDh34p9Y6S77f3/jFjxvC7ZfTo0V9KvX/vfb9p8ubNm887f8mSJZf8bWn6F/K8NfX2ft2CggKP+vXrr7j8X/X99vXv5Dlt3W9m7ty5v+j8JUuWfCHPX7ZsWUwVLV68uFwZtGzZsnIF5Pjx48v/f6fXf6XnX06feeedd34p9X6bMmfOnJ/bZMmSJbHy8vKfW0bPnTvX84U+d0pZunTpf9hk27ZtVyrlySef/LkXesKECb8QkMmTJ//cJtOmTfPrpE2bNsV8P9GvE/9CnjNlyhS/Ttq2bdsV+TqRPKcl+wP9m3H5f7Nnz/5Vdf4yee4vFfL/VwW9GZfXFfKcqS8U8lypL/8f8ZylmZ988sn/+SrvmTNn/of1uW/fvm8tV9SVK1dG8pwpX1bIn1NGr169OpLndPkyefbUv+zlypXyZS9XzpSVK1f+nDKWLl0ayXO6fJkye8uWLf9vRps0adIvBHLr1q2R39f+Z7Vkvv/+S8roqVMv9K1P+6VAvvXpZcrtt9/+C8vYtGnTL6tfe+ZOnXqhb33KxHOf9v8BAPV7yW6b3t+DAAAAAElFTkSuQmCC" alt="Seragam Banser">
       
       <div id="teksPetunjuk">FOTO WAJAH AKAN MUNCUL DI SINI</div>
     </div>
@@ -111,7 +111,6 @@
       imgSeragam.style.display = 'block';
       teks.style.display = 'none';
       
-      // Mengatur Posisi Awal Seragam
       currentX = 0;
       currentY = 0;
       imgSeragam.style.left = currentX + 'px';
@@ -125,7 +124,6 @@
     }
   }
 
-  // SISTEM DRAG & DROP SERAGAM MENGGUNAKAN JARI (HP) DAN MOUSE (LAPTOP)
   frame.addEventListener('mousedown', dragStart);
   window.addEventListener('mousemove', dragMove);
   window.addEventListener('mouseup', dragEnd);
