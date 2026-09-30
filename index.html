@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aplikasi Pasfoto Banser Automatis</title>
+  <title>Aplikasi Pasfoto Banser Nyata (Realistis)</title>
   <style>
     body { background: #f0f2f5; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; display: flex; justify-content: center; align-items: flex-start; padding: 20px; }
     .pasfoto-card-jumbo { background: #ffffff; max-width: 600px; width: 100%; border-radius: 20px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); padding: 30px; box-sizing: border-box; text-align: center; margin-top: 10px; }
@@ -13,20 +13,30 @@
     .pasfoto-controls-jumbo label { display: block; font-size: 13px; font-weight: 800; color: #2c3e50; margin-bottom: 6px; }
     .pasfoto-controls-jumbo select { width: 100%; padding: 12px; border: 2px solid #cbd5e1; border-radius: 10px; font-size: 14px; font-weight: bold; color: #2c3e50; }
     .pasfoto-frame-wrapper { display: inline-block; background: #ffffff; padding: 10px; border-radius: 16px; border: 3px dashed #747d8c; margin-bottom: 25px; }
-    .frame-jumbo-3x4 { position: relative; width: 320px; height: 426px; background: #db2725; overflow: hidden; border-radius: 12px; }
-    .frame-jumbo-4x6 { position: relative; width: 320px; height: 480px; background: #db2725; overflow: hidden; border-radius: 12px; }
-    #wajahPenggunaTampil { position: absolute; top: 0px; left: 0px; width: 100%; height: auto; z-index: 5; display: none; }
-    #seragamBanserTampil { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; display: none; }
+    
+    /* Ukuran Display Pasfoto Standar */
+    .frame-jumbo-3x4 { position: relative; width: 340px; height: 453px; background: #db2725; overflow: hidden; border-radius: 12px; cursor: move; }
+    .frame-jumbo-4x6 { position: relative; width: 340px; height: 510px; background: #db2725; overflow: hidden; border-radius: 12px; cursor: move; }
+    
+    /* Lapisan Wajah Berada di Belakang */
+    #wajahPenggunaTampil { position: absolute; top: 0px; left: 0px; width: 100%; height: auto; z-index: 5; display: none; pointer-events: none; }
+    
+    /* Lapisan Seragam PNG Foto Asli (Bisa Digeser Bebas Menggunakan Mouse/Jari) */
+    #seragamBanserTampil { position: absolute; top: 180px; left: 0px; width: 100%; height: auto; z-index: 10; cursor: move; display: none; }
+    
     #teksPetunjuk { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #ffffff; font-weight: bold; font-size: 15px; width: 90%; z-index: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+    
+    /* Panel Slider Kontrol Skala Ukuran Seragam Nyata */
     .pasfoto-sliders-jumbo { margin-bottom: 25px; background: #f8f9fa; padding: 15px; border-radius: 12px; border: 1px solid #dcdde1; text-align: left; box-sizing: border-box; }
-    .pasfoto-sliders-jumbo label { display: block; font-size: 13px; font-weight: 800; color: #2c3e50; margin-bottom: 10px; }
-    .tombol-panah-jumbo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .tombol-panah-jumbo-grid button { padding: 12px 5px; border-radius: 8px; border: none; background: #2c3e50; color: white; font-weight: 800; font-size: 13px; cursor: pointer; }
+    .pasfoto-sliders-jumbo label { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 800; color: #2c3e50; }
+    .pasfoto-sliders-jumbo input { width: 65%; }
+
     .pasfoto-actions-jumbo { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
     .file-input-jumbo-wrapper { background: #1b4d3e; padding: 15px; border-radius: 12px; color: white; text-align: center; }
     .file-input-jumbo-wrapper input { font-size: 14px; font-weight: 700; cursor: pointer; display: block; margin: 0 auto; }
     .btn-pasfoto-jumbo { width: 100%; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 900; cursor: pointer; border: none; background: #e67e22; color: #ffffff; }
     .pasfoto-footer-jumbo { font-size: 12px; font-weight: 800; color: #57606f; border-top: 2px solid #f1f2f6; padding-top: 15px; }
+    
     @media print {
       body * { visibility: hidden !important; background: none !important; }
       .id-area-cetak, .id-area-cetak * { visibility: visible !important; }
@@ -42,7 +52,7 @@
 <div class="pasfoto-card-jumbo id-area-cetak">
   <div class="pasfoto-header-jumbo no-print">
     <h2>KAMI SIAP SUKSESKAN<br>EDIT PASFOTO BANSER AUTOMATIS</h2>
-    <p>Unggah foto terbaik Sahabat, seragam lengkap dan baret loreng kehormatan akan disesuaikan secara otomatis dan instan.</p>
+    <p>Silakan pasang foto Anda. Geser langsung seragam loreng asli dengan jari Anda ke atas/bawah/kiri/kanan agar posisinya pas dan rapi.</p>
   </div>
 
   <div class="pasfoto-controls-jumbo no-print">
@@ -54,38 +64,21 @@
   </div>
 
   <div class="pasfoto-frame-wrapper">
+    <!-- Frame Utama Pasfoto Cetak Resmi -->
     <div id="framePasfotoUtama" class="frame-jumbo-3x4">
+      <!-- Lapisan Wajah -->
       <img id="wajahPenggunaTampil" src="" alt=" ">
       
-      <!-- Pola Gambar Baju Vektor Banser Ringan -->
-      <svg id="seragamBanserTampil" viewBox="0 0 100 133" xmlns="http://w3.org">
-        <ellipse cx="50" cy="22" rx="18" ry="8" fill="#2d4a22" stroke="#1b3312" stroke-width="1"/>
-        <path d="M 32,22 Q 40,12 55,16 Q 68,20 68,24 Z" fill="#1b3312"/>
-        <rect x="48" y="16" width="3" height="5" fill="#f1c40f" />
-        <path d="M 20,95 C 20,80 35,70 50,70 C 65,70 80,80 80,95 L 85,133 L 15,133 Z" fill="#3b5e2b" stroke="#2d4a22" stroke-width="1.5"/>
-        <path d="M 25,95 Q 35,85 40,105 Z" fill="#1b3312"/>
-        <path d="M 60,85 Q 65,95 75,90 Z" fill="#57606f"/>
-        <path d="M 45,110 Q 50,95 60,120 Z" fill="#1b3312"/>
-        <path d="M 42,70 L 50,85 L 58,70 Z" fill="#ffffff"/>
-        <path d="M 48,78 L 50,98 L 52,78 Z" fill="#2c3e50"/>
-      </svg>
+      <!-- LAPISAN FOTO SERAGAM LORENG LENGKAP ASLI (MURNI HASIL FOTO NYATA TRANS PARAN) -->
+      <img id="seragamBanserTampil" src="https://r2.dev" alt="Seragam Banser">
       
       <div id="teksPetunjuk">FOTO WAJAH AKAN MUNCUL DI SINI</div>
     </div>
   </div>
   
+  <!-- Slider Khusus Mengatur Skala Besar/Kecil Seragam Nyata -->
   <div class="pasfoto-sliders-jumbo no-print">
-    <label>🎯 SESUAIKAN LETAK / POSISI FOTO WAJAH:</label>
-    <div class="tombol-panah-jumbo-grid">
-      <button type="button" onclick="geserWajah('atas')">▲ NAIK FOTO</button>
-      <button type="button" onclick="geserWajah('bawah')">▼ TURUN FOTO</button>
-      <button type="button" onclick="geserWajah('kiri')">◀ GESER KIRI</button>
-      <button type="button" onclick="geserWajah('kanan')">▶ GESER KANAN</button>
-    </div>
-    <div class="tombol-panah-jumbo-grid" style="margin-top: 10px;">
-      <button type="button" onclick="geserWajah('zoomIn')" style="background:#27ae60 !important;">➕ PERBESAR</button>
-      <button type="button" onclick="geserWajah('zoomOut')" style="background:#c0392b !important;">➖ PERKECIL</button>
-    </div>
+    <label>🔍 ATUR UKURAN SERAGAM NYATA: <input type="range" id="scaleSlider" min="50" max="250" value="100" oninput="ubahSkalaSeragam(this.value)"></label>
   </div>
 
   <div class="pasfoto-actions-jumbo no-print">
@@ -100,38 +93,80 @@
 </div>
 
 <script>
-  let topPos = 0; let leftPos = 0; let widthScale = 100;
+  // Variabel Sistem Drag and Drop Seragam Asli
+  let isDragging = false;
+  let startX, startY;
+  let currentX = 0;
+  let currentY = 180; // Posisi default awal pundak seragam loreng banser asli
+
+  const imgSeragam = document.getElementById('seragamBanserTampil');
+  const frame = document.getElementById('framePasfotoUtama');
+
   function prosesTampilFoto(event) {
     const input = event.target;
     if (input.files && input.files[0]) {
       const imgWajah = document.getElementById('wajahPenggunaTampil');
-      const imgSeragam = document.getElementById('seragamBanserTampil');
       const teks = document.getElementById('teksPetunjuk');
+      
       imgWajah.src = URL.createObjectURL(input.files[0]);
       imgWajah.style.display = 'block';
       imgSeragam.style.display = 'block';
       teks.style.display = 'none';
-      topPos = 0; leftPos = 0; widthScale = 100;
-      updateGayaWajah();
+      
+      // Reset Letak Awal Seragam Loreng Asli
+      currentX = 0;
+      currentY = 180;
+      imgSeragam.style.left = currentX + 'px';
+      imgSeragam.style.top = currentY + 'px';
     }
   }
-  function geserWajah(aksi) {
-    const imgWajah = document.getElementById('wajahPenggunaTampil');
-    if (imgWajah.style.display !== 'block') return;
-    if (aksi === 'atas') topPos -= 6;
-    if (aksi === 'bawah') topPos += 6;
-    if (aksi === 'kiri') leftPos -= 6;
-    if (aksi === 'kanan') leftPos += 6;
-    if (aksi === 'zoomIn') widthScale += 4;
-    if (aksi === 'zoomOut') widthScale -= 4;
-    updateGayaWajah();
+
+  // Fungsi Pengubah Skala Lebar Seragam Loreng
+  function ubahSkalaSeragam(nilai) {
+    if (imgSeragam.style.display === 'block') {
+      imgSeragam.style.width = nilai + '%';
+    }
   }
-  function updateGayaWajah() {
-    const imgWajah = document.getElementById('wajahPenggunaTampil');
-    imgWajah.style.top = topPos + 'px'; imgWajah.style.left = leftPos + 'px'; imgWajah.style.width = widthScale + '%';
+
+  // SISTEM DRAG & DROP SERAGAM MENGGUNAKAN JARI (HP) DAN MOUSE (LAPTOP)
+  frame.addEventListener('mousedown', dragStart);
+  window.addEventListener('mousemove', dragMove);
+  window.addEventListener('mouseup', dragEnd);
+  
+  frame.addEventListener('touchstart', dragStart, { passive: false });
+  window.addEventListener('touchmove', dragMove, { passive: false });
+  window.addEventListener('touchend', dragEnd);
+
+  function dragStart(e) {
+    if (imgSeragam.style.display !== 'block') return;
+    isDragging = true;
+    
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    startX = clientX - currentX;
+    startY = clientY - currentY;
   }
+
+  function dragMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    currentX = clientX - startX;
+    currentY = clientY - startY;
+    
+    imgSeragam.style.left = currentX + 'px';
+    imgSeragam.style.top = currentY + 'px';
+  }
+
+  function dragEnd() {
+    isDragging = false;
+  }
+
   function gantiUkuranPasfoto(pilihan) {
-    const frame = document.getElementById('framePasfotoUtama');
     if (pilihan === '4x6') { frame.className = 'frame-jumbo-4x6'; } 
     else { frame.className = 'frame-jumbo-3x4'; }
   }
